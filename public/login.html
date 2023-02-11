@@ -59,10 +59,11 @@
         background-color: #c4342a;
       }
     </style>
+    <script src="./uploadCsv.js"></script>
   </head>
   <body>
-    <form action="/api/v1/register" method="POST">
-      <h1>REGISTER</h1>
+    <form action="/api/v1/fromcsv" method="POST">
+      <h1>Upload</h1>
       <input placeholder="Enter Your Name" type="text" name="name" id="name" />
       <input
         placeholder="Enter Your Email"
@@ -76,7 +77,14 @@
         name="password"
         id="password"
       />
-      <input type="submit" value="Login" />
+      <!-- <input type="submit" value="Login" /> -->
+      <input type="file" id="csv-file" name="csv-file">
+      <button type="submit">Submit</button>
     </form>
+
+    <!-- <form id="csv-form" >
+      
+    </form> -->
+    
   </body>
 </html>

@@ -8,9 +8,14 @@ const mongoose = require('mongoose')
 const csv = require('csv-parser')
 const fs = require('fs')
 
+const multer = require('multer')
+const upload = multer();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use('/images', express.static(__dirname+'/public/images'))
+app.use('public', express.static(__dirname + '/public'))
 
 
 
@@ -30,24 +35,7 @@ const record = mongoose.Schema({
     year:{type:Number, required:true}
 })
 
-
 const Record = mongoose.model("Record", record)
-
-
-
-// const adder = async()=>{
-//     const rr = new Record({
-//         studentName:"Kishan Gupta",
-//         gender:"unknown",
-//         company:"Apple",
-//         package:10,
-//         year:2023
-//     })
-
-//     await rr.save();
-// }
-// adder();
-
 
 
 
@@ -56,94 +44,27 @@ app.get('/', (req, res)=>{
 })
 app.post("/api/v1/upload", (req, res)=>{
   // res.send("<h1>aditya</h1>")
-  res.sendFile(path.join(__dirname + "/login.html"))
+  res.sendFile(path.join(__dirname + "/public/login.html"))
   console.log('a')
 })
 
 //from csv
 app.post("/api/v1/fromcsv", (req, res)=>{
-  //read csv
-  fs.createReadStream('students.csv')
+  
+  fs.createReadStream('public/students.csv')
   .pipe(csv())
-  .on('data', (row)=>{
-    //create a new student record
-    const student = new Record({
-      studentName:row.name,
-      gender:row.gender,
-      company:row.company,
-      package:row.package,
-      year:row.year
-    })
-    // save student record to the database
-    student.save((err)=>{
-      if(err) throw err;
-
-    });
+  .on('data', (data)=>{
+    console.log(data);
+    const student = new Record(data);
+    student.save();
   })
   .on('end', ()=>{
-    console.log('csv processed successfully')
+    console.log('csv data saved')
   });
-  res.sendFile(path.join(__dirname + "/index.html"))
-
+  res.send("<h1>ok</h1>")
 });
+
 app.listen(PORT, ()=>{
   console.log(`ok port ${PORT}`)
 })
-
-
-
-
-
-
-// const express = require('express');
-// const mongoose = require('mongoose');
-// const bodyParser = require('body-parser');
-// const exphbs = require('express-handlebars');
-
-// const app = express();
-
-// // Connect to MongoDB
-// mongoose.connect('mongodb://localhost/placement', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
-
-// // Load the Student model
-// const Student = require('./models/Student');
-
-// // Use body-parser middleware
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
-
-// // Use handlebars as the templating engine
-// app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
-// app.set('view engine', 'handlebars');
-
-// // GET / - Show all student records
-// app.get('/', (req, res) => {
-//   Student.find({}, (err, students) => {
-//     if (err) throw err;
-//     res.render('index', { data: students });
-//   });
-// });
-
-// // GET /analysis - Show analysis of student records
-// app.get('/analysis', (req, res) => {
-//   Student.aggregate([
-//     {
-//       $group: {
-//         _id: '$department',
-//         averagePackage: { $avg: '$packageOffered' }
-//       }
-//     }
-//   ], (err, result) => {
-//     if (err) throw err;
-//     res.render('analysis', { data: result });
-//   });
-// });
-
-// // Start the server
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//   console.log(`Server started on port ${PORT}`);
-// });
+  

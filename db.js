@@ -12,9 +12,9 @@ mongoose.connect('mongodb://localhost:27017/nitb',{useNewUrlParser:true,useUnifi
     console.log('mongodb connected')
 }).catch((err)=>{
     console.log(err)
-})
+})  
 
-
+   
 const record = mongoose.Schema({
     studentName:{type:String, required:true},
     gender:{type:String, required:true},
