@@ -50,7 +50,7 @@ app.post("/api/v1/upload", (req, res)=>{
 
 //from csv
 app.post("/api/v1/fromcsv", (req, res)=>{
-  
+    
   fs.createReadStream('public/students.csv')
   .pipe(csv())
   .on('data', (data)=>{
@@ -64,7 +64,57 @@ app.post("/api/v1/fromcsv", (req, res)=>{
   res.send("<h1>ok</h1>")
 });
 
+// show
+// app.get('/records.ejs', (req, res)=>{
+//   Record.find({}, (err, records)=>{
+//     if(err) return res.status(500).send(err);
+//     return res.render('records', {records:records});
+//   })
+//   // res.sendFile(path.join(__dirname + '/views/records.ejs'))
+// })
+app.get('/records.ejs', function(req, res) {
+  Record.find({}, function(err, records) {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error fetching data from MongoDB');
+    } else {
+      res.send(`
+        <html>
+          <head>
+            <title>Records</title>
+          </head>
+          <body>
+            <table>
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Gender</th>
+                  <th>Company</th>
+                  <th>Package</th>
+                  <th>Year</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${records.map(record => `
+                  <tr>
+                    <td>${record.studentName}</td>
+                    <td>${record.gender}</td>
+                    <td>${record.company}</td>
+                    <td>${record.package}</td>
+                    <td>${record.year}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </body>
+        </html>
+      `);
+    }
+  });
+});
+app.set('view engine', path.join(__dirname, 'views'))
+
 app.listen(PORT, ()=>{
   console.log(`ok port ${PORT}`)
-})
-  
+})  
+    

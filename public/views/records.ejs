@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Records</title>
+    </head>
+    <body>
+        <h1>Records</h1>
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Gender</th>
+                <th>Company</th>
+                <th>Package</th>
+                <th>Year</th>
+            </tr>
+            <% records.forEach(function(record) { %>
+                <tr>
+                    <td><%= record.studentName %></td>
+                    <td><%= record.gender %></td>
+                    <td><%= record.company %></td>
+                    <td><%= record.package %></td>
+                    <td><%= record.year %></td>
+                </tr>
+            <% }); %>
+        </table>
+    </body>
+</html>
