@@ -56,14 +56,14 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const app = express()
-const PORT = 5000
+const PORT = 4000
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
 app.get('/', (req, res)=>{
-  res.render(path.join(__dirname+"./index.html"))
+  res.sendFile(path.join(__dirname+"/index.html"))
 })
 
 app.listen(PORT, ()=>{
