@@ -58,12 +58,20 @@ const path = require('path')
 const app = express()
 const PORT = 4000
 
+
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
 app.get('/', (req, res)=>{
   res.sendFile(path.join(__dirname+"/index.html"))
+})
+app.post("/api/v1/upload", (req, res)=>{
+  // res.send("<h1>aditya</h1>")
+  res.sendFile(path.join(__dirname + "/login.html"))
+  console.log('a')
 })
 
 app.listen(PORT, ()=>{
