@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        footer {
+            padding-top: 10px;
+            background-color: #4194c7;
+            color: #fff;
+            padding: 50px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid #666;
+          }
+          
+          .container{
+            display: flex;
+            flex-direction: row;
+          }
+          .col-md-4 {
+            text-align: center;
+            padding: 0 20px;
+          }
+          
+          h4 {
+            color: black;
+            font-weight: bold;
+          }
+          p{
+            color:black;
+          }
+          ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
+          
+          ul li {
+            margin-bottom: 10px;
+          }
+          
+          ul li a {
+            color: #fff;
+          }
+          
+      
+          
+    </style>
+
+</head>
+<body>
+  
+
+    <!--Nav Bar-->
+    <nav class="bg-[#02042a] w-full flex flex-wrap ">
+
+        
+        <div class="relative  w-[1080px] mx-auto flex items-center justify-between">
+
+        <a href="/"  class="cursor-pointer py-7 pr-7">
+    
+           <img src="/images/logo2.png"
+           width = "125px"
+           height = "30px" />
+        </a>    
+
+
+
+        <ul class="flex gap-5">
+
+
+
+            <li class="text-white py-7 hover:text-yellow-500 cursor-pointer transition-all duration-200 relative group">
+                <a href="#">Home</a>
+
+                <div class="absolute bottom-0 hidden h-1 w-full bg-yellow-500  group-hover:block transition-all duration-200"></div>
+
+            </li>
+
+            <li class="text-white py-7 hover:text-yellow-500 cursor-pointer transition-all duration-200 relative group">
+                <a href="#">About</a>
+
+                <div class="absolute bottom-0 hidden h-1 w-full bg-yellow-500  group-hover:block transition-all duration-200"></div>
+
+            </li>
+
+            
+            <li class="text-white py-7 hover:text-yellow-500 cursor-pointer transition-all duration-200 relative group">
+                <a href="#">Features</a>
+
+                <div class="absolute bottom-0 hidden h-1 w-full bg-yellow-500  group-hover:block transition-all duration-200"></div>
+
+            </li>
+
+           
+
+                <!-- <div class="absolute bottom-0 hidden h-1 w-full bg-yellow-500  group-hover:block transition-all duration-200"></div> -->
+
+    
+
+        </ul>
+
+
+        <button class="py-3 px-5 text-blue border-black w-38 flex gap-4 align-middle justify-center
+          border  rounded-lg text-sm  text-black bg-white transition-all duration-500 
+           hover:text-blue-500 ">Login <img  src="./images/arrow.svg" alt="">
+   
+        </button>
+
+        
+
+        </div>
+
+
+
+    </nav>
+
+
+        <!--Hero Section-->
+
+
+    <section
+    class="relative bg-[#02042a]  ">
+
+       <div class="width:10/12 max-w-[1080px] flex flex-row justify-between items-center mx-auto ">
+
+        <!--Left PArt -->
+          <div class="space-y-8">
+            <h1 class=" font-bold text-[40px] leading-[1,2] text-white ">Placement Data Analyser</h1>
+            <div class="w-6 h-1 bg-green-300"></div>
+            <p class="text-[18px] leading-7 text-white opacity-70">Campus Placement  is an unified portal <br> where you can analyze the palcement data <br> by simply uploading  data into database</p>
+
+            <form action="/api/v1/graph" action="get">
+                <button type="sub
+                " 
+            class="text-white bg-[#2b84ea] rounded-md font-bold  hover:bg-yellow-400  px-[14px] py-[18px]  transition-all duration-200">
+            Dashboard
+        </button>
+            </form>
+         </div>
+
+        <!--Right Part-->
+        <img src="/images/png1.png" alt=""  class="max-w-[680px]">     
+    </div>
+
+<!--Shape Part-->
+       <div class="absolute left-0 right-0 w-[103%[">
+         <img class="w-full object-fill "  src="/images/hero-shape.svg" alt="" >
+       </div>
+    
+    </section>
+
+
+
+</body>
+</html>

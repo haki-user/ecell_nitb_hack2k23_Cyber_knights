@@ -40,7 +40,7 @@ const Record = mongoose.model("Record", record)
 
 
 app.get('/', (req, res)=>{
-  res.sendFile(path.join(__dirname+"/index.html"))
+  res.sendFile(path.join(__dirname+"/home.html"))
 })
 app.post("/api/v1/upload", (req, res)=>{
   // res.send("<h1>aditya</h1>")
@@ -58,13 +58,13 @@ app.post("/api/v1/fromcsv", (req, res)=>{
     const student = new Record(data);
     student.save();
   })
-  .on('end', ()=>{
+  .on('end', ()=>{  
     console.log('csv data saved')
   });
   // res.send("<h1>ok</h1>")
   console.log("csv sent....")
 });   
-
+  
 // show
 // app.get('/records.ejs', (req, res)=>{
 //   Record.find({}, (err, records)=>{
@@ -304,13 +304,13 @@ app.get('/api/v1/data', function(req, res) {
 app.get('/api/v1/graph', (req, res)=>{
   res.sendFile(path.join(__dirname + '/public/graph.html'))
 })
-
+ 
 app.get('/api/v1/graphData', (req, res)=>{
   Record.find({}, function(err, records) {
-    console.log('data sent')
+    console.log('data sent') 
    res.send(records)
-  });  
-})
+  });        
+})    
 
 app.set('view engine', path.join(__dirname, 'views'))
 
