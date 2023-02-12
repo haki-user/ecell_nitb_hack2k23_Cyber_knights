@@ -72,7 +72,7 @@
             Click on the "View Data" button to see the placement data for your
             campus.
           </p>
-          <a href="/records.ejs" class="btn btn-primary">View Data</a>
+          <a href="/api/v1/data" class="btn btn-primary">View Data</a>
         </div>
         <div class="col-md-6">
           <form action="/api/v1/upload" method="POST">
@@ -83,6 +83,11 @@
           </p>
           <!-- <a href="#" class="btn btn-primary">Upload Data</a> -->
           <input type="submit" value="upload">
+          </form>
+        </div>
+        <div>
+          <form action="/api/v1/change" method="GET">
+            <input type="submit" value="change">
           </form>
         </div>
       </div>
