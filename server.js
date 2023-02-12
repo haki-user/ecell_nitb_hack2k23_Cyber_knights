@@ -61,8 +61,9 @@ app.post("/api/v1/fromcsv", (req, res)=>{
   .on('end', ()=>{
     console.log('csv data saved')
   });
-  res.send("<h1>ok</h1>")
-});
+  // res.send("<h1>ok</h1>")
+  console.log("csv sent....")
+});   
 
 // show
 // app.get('/records.ejs', (req, res)=>{
@@ -183,11 +184,134 @@ app.get('/api/v1/data', function(req, res) {
     }
   });
 });
-
-
-app.get('/api/v1/change', (req, res)=>{
-  res.sendFile(path.join(__dirname + '/public/change.html'))
+// app.get('/api/v1/data', function(req, res) {
+//   let count;
+//   Record.countDocuments({}, function(err, count) {
+//     if (err) {
+//       console.error(err);
+//       res.status(500).send('Error fetching data from MongoDB');
+//     } else {
+//       // console.log(record)
+//       let maleCount = 0;
+//       let femaleCount = 0;
+//       let maxPackageCompany = '';
+//       let maxPackage = 0;
+//       Record.find({}, function(err, records) {
+//         console.log(records)
+//         records.forEach(record => {
+//           if (record.gender === 'male') {
+//             maleCount++;
+//           } else if (record.gender === 'Female') {
+//             femaleCount++;
+//           }
+//           if (record.package > maxPackage) {
+//             maxPackage = record.package;
+//             maxPackageCompany = record.company;
+//           }
+//         });
+//         res.send(`
+//           <html>
+//             <head>
+//               <title>Records</title>
+//               <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+//             </head>
+//             <body>
+//               <div>Total Entries: ${count}</div>
+//               <div>Male: ${maleCount}</div>
+//               <div>Female: ${femaleCount}</div>
+//               <div>Company with Maximum Package: ${maxPackageCompany} (${maxPackage})</div>
+//               <canvas id="myChart"></canvas>
+//               <table>
+//                 <thead>
+//                   <tr>
+//                     <th>Student Name</th>
+//                     <th>Gender</th>
+//                     <th>Company</th>
+//                     <th>Package</th>
+//                     <th>Year</th>
+//                   </tr>
+//                 </thead>
+//                 <tbody>
+//                   ${records.map(record => `
+//                     <tr>
+//                       <td>${record.studentName}</td>
+//                       <td>${record.gender}</td>
+//                       <td>${record.company}</td>
+//                       <td>${record.package}</td>
+//                       <td>${record.year}</td>
+//                     </tr>
+//                   `).join('')}
+//                 </tbody>
+//               </table>
+//               <script>
+//                 let companies = [];
+//                 let packages = [];
+//                 ${records.map(record => `
+//                   companies.push("${record.company}");
+//                   packages.push(${record.package});
+//                 `).join('')}
+//                 let ctx = document.getElementById('myChart').getContext('2d');
+//                 let chart = new Chart(ctx, {
+//                   type: 'bar',
+//                   data: {
+//                     labels: companies,
+//                     datasets: [{
+//                       label: 'Package offered by each company',
+//                       data: packages,
+//                       backgroundColor: 'rgb(255, 99, 132)',
+//                       borderColor: 'rgb(255, 99, 132)',
+//                       borderWidth: 1
+//                     }]
+//                   },
+//                   options: {
+//                     scales: {
+//                       yAxes: [{
+//                         ticks: {
+//                           beginAtZero: true,
+//                           callback: function(value) {
+//                             if (Number.isInteger(value)) {
+//                               return value;
+//                             }
+//                           }
+//                         }
+//                       }],
+//                       xAxes: [{
+//                       barPercentage: 0.4,
+//                       gridLines: {
+//                       display: false
+//                       }
+//                       }]
+//                       }
+//                       };
+                      
+//                       var barChart = new Chart(ctx, {
+//                       type: 'bar',
+//                       data: barData,
+//                       options: barOptions
+//                       });
+                      
+//                       });
+//                       </script>
+//                       </body>  
+//                       </html>
+//                       `);
+//                       });
+//                       }
+//                       });
+//                       });                        
+  
+  
+app.get('/api/v1/graph', (req, res)=>{
+  res.sendFile(path.join(__dirname + '/public/graph.html'))
 })
+
+app.get('/api/v1/graphData', (req, res)=>{
+  Record.find({}, function(err, records) {
+    console.log('data sent')
+   res.send(records)
+  });  
+})
+
 app.set('view engine', path.join(__dirname, 'views'))
 
 app.listen(PORT, ()=>{
