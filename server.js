@@ -304,13 +304,13 @@ app.get('/api/v1/data', function(req, res) {
 app.get('/api/v1/graph', (req, res)=>{
   res.sendFile(path.join(__dirname + '/public/graph.html'))
 })
- 
+           
 app.get('/api/v1/graphData', (req, res)=>{
   Record.find({}, function(err, records) {
     console.log('data sent') 
    res.send(records)
   });        
-})    
+})        
 
 app.set('view engine', path.join(__dirname, 'views'))
 

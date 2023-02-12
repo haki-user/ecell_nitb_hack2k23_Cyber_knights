@@ -229,12 +229,15 @@
         </div>
         <div class="flex header-right items-baseline gap-4">
           <li
-            class="text-black py-7 hover:text-yellow-500 cursor-pointer transition-all duration-200 relative group"
+            class="text-black list-none py-7 hover:text-yellow-500 cursor-pointer transition-all duration-200 relative group"
           >
             <!-- <a href="#" onclick="uploadcsv()">Upload Placement Record</a> -->
             <div>
-                <input type="file" id="csvFileInput" accept=".csv"/>
-                <button onclick="uploadCSV()">Upload</button>
+                <span>
+                    <label for="csvFileInput">Upload csv</label>
+                    <input type="file" id="csvFileInput" accept=".csv"/>
+                    <button onclick="uploadCSV()">Upload</button>
+                </span>
             </div>
 
             <div
@@ -242,7 +245,7 @@
             ></div>
           </li>
 
-          <li
+          <!-- <li
             class="text-black py-7 hover:text-yellow-500 cursor-pointer transition-all duration-200 relative group"
           >
             <a href="#">Add Reason Of Unemployment</a>
@@ -250,7 +253,7 @@
             <div
               class="bottom-0 hidden h-1 w-full bg-yellow-500 group-hover:block transition-all duration-200"
             ></div>
-          </li>
+          </li> -->
 
           <span class="material-icons-outlined">notifications</span>
 
