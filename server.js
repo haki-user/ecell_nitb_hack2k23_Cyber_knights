@@ -14,7 +14,7 @@ const upload = multer();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/images', express.static(__dirname+'/public/images'))
+// app.use('/images', express.static(__dirname+'/public/images'))
 app.use('public', express.static(__dirname + '/public'))
 
 
